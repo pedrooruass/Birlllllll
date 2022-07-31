@@ -10,33 +10,83 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.05),
-      child: ListView(
-        children: [
-          const FirstLineWIdget(),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-          const NextWorkoutBoxWidget(),
-          const FdaPraKrlWidget(),
-          Center(
-            child: AutoSizeText(
-              "Area of focus",
-              style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width * 0.065,
-                fontWeight: FontWeight.w500,
-                color: AppColors.homePageTitleColor,
-              ),
-              textAlign: TextAlign.start,
-            ),
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-          const HomeBodyParts(),
-          Container(
-            height: 400,
-          )
+    return Scaffold(
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          appBar(context),
         ],
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.05),
+          child: ListView(
+            children: [
+              const FirstLineWIdget(),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              const NextWorkoutBoxWidget(),
+              const FdaPraKrlWidget(),
+              Center(
+                child: AutoSizeText(
+                  "Area of focus",
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.065,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.homePageTitleColor,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+              const HomeBodyParts(),
+              Container(
+                height: 400,
+              )
+            ],
+          ),
+        ),
       ),
+    );
+  }
+
+  SliverAppBar appBar(BuildContext context) {
+    return SliverAppBar(
+      floating: true,
+      snap: true,
+      title: AutoSizeText(
+        "Training",
+        style: TextStyle(
+          fontSize: MediaQuery.of(context).size.width * 0.075,
+          fontWeight: FontWeight.w700,
+          color: AppColors.homePageTitleColor,
+        ),
+      ),
+      backgroundColor: AppColors
+          .homePageBackgroundColor, // grey[50]: normal scaffold background color
+      actions: [
+        Icon(
+          Icons.arrow_back_ios,
+          size: MediaQuery.of(context).size.width * 0.05,
+          color: AppColors.homePageIconsColor,
+        ),
+        Icon(
+          Icons.calendar_today_outlined,
+          size: MediaQuery.of(context).size.width * 0.05,
+          color: AppColors.homePageIconsColor,
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.01,
+        ),
+        Icon(
+          Icons.arrow_forward_ios,
+          size: MediaQuery.of(context).size.width * 0.05,
+          color: AppColors.homePageIconsColor,
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.05,
+        ),
+      ],
+      centerTitle: false,
+      elevation: 0,
     );
   }
 }

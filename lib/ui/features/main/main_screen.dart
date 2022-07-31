@@ -21,20 +21,14 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.homePageBackgroundColor,
-      body: NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          appBar(context),
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: [
+          Container(),
+          const HomeScreen(),
+          const ProfileScreen(),
         ],
-        body: PageView(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: pageController,
-          children: [
-            Container(),
-            const HomeScreen(),
-            const ProfileScreen(),
-          ],
-        ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
         onTap: (index) {
@@ -57,48 +51,6 @@ class _MainScreenState extends State<MainScreen> {
           Icon(FontAwesomeIcons.userTie, size: 30),
         ],
       ),
-    );
-  }
-
-  SliverAppBar appBar(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
-      snap: true,
-      title: AutoSizeText(
-        "Training",
-        style: TextStyle(
-          fontSize: MediaQuery.of(context).size.width * 0.075,
-          fontWeight: FontWeight.w700,
-          color: AppColors.homePageTitleColor,
-        ),
-      ),
-      backgroundColor: AppColors
-          .homePageBackgroundColor, // grey[50]: normal scaffold background color
-      actions: [
-        Icon(
-          Icons.arrow_back_ios,
-          size: MediaQuery.of(context).size.width * 0.05,
-          color: AppColors.homePageIconsColor,
-        ),
-        Icon(
-          Icons.calendar_today_outlined,
-          size: MediaQuery.of(context).size.width * 0.05,
-          color: AppColors.homePageIconsColor,
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.01,
-        ),
-        Icon(
-          Icons.arrow_forward_ios,
-          size: MediaQuery.of(context).size.width * 0.05,
-          color: AppColors.homePageIconsColor,
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.05,
-        ),
-      ],
-      centerTitle: false,
-      elevation: 0,
     );
   }
 }
