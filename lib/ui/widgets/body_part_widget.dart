@@ -2,15 +2,28 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:training_app/domain/entities/body_part.dart';
 import 'package:training_app/domain/resources/app_colors.dart';
+import 'package:training_app/ui/features/exercises/exercises_screen.dart';
 
 class BodyPartWidget extends StatelessWidget {
-  const BodyPartWidget({Key? key, required this.bodyPart}) : super(key: key);
+  const BodyPartWidget(
+      {Key? key, required this.bodyPart, required this.exerciseImageAssets})
+      : super(key: key);
   final BodyPart bodyPart;
+  final List<Widget> exerciseImageAssets;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ExercisesScreen(
+              bodyPart: bodyPart,
+              exerciseImageAssets: exerciseImageAssets,
+            ),
+          ),
+        );
+      },
       child: Ink(
         child: Container(
           decoration: BoxDecoration(

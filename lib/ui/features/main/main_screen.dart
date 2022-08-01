@@ -3,7 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:training_app/domain/resources/app_colors.dart';
-import 'package:training_app/ui/features/home__page/home_page.dart';
+import 'package:training_app/ui/features/home__page/home_screen.dart';
 import 'package:training_app/ui/features/profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {

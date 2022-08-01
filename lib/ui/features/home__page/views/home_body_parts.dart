@@ -19,8 +19,12 @@ class HomeBodyParts extends StatelessWidget {
             bodyPart: BodyPart(
               name: bodyPartsProvider.parts[i].name,
               imageAsset: bodyPartsProvider.parts[i].imageAsset,
+              exercises: bodyPartsProvider.parts[i].exercises,
             ),
-          ),
+            exerciseImageAssets: bodyPartsProvider.parts[i].exercises!
+                .map((e) => Image.asset(e.imageAsset))
+                .toList(), // How TF This works?
+          ), // FIX THIS SHITTTT
         );
       }
       return Expanded(

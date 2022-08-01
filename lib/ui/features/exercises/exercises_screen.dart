@@ -1,25 +1,22 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:training_app/domain/entities/body_part.dart';
 import 'package:training_app/domain/resources/app_colors.dart';
 
-class PartsPage extends StatelessWidget {
-  final List<String> exercises;
-  final List<String> setReps;
-  final String partName;
-  final List<Widget> imagesAsset;
-  const PartsPage({
+class ExercisesScreen extends StatelessWidget {
+  final BodyPart bodyPart;
+  final List<Widget> exerciseImageAssets;
+  const ExercisesScreen({
     Key? key,
-    required this.exercises,
-    required this.partName,
-    required this.setReps,
-    required this.imagesAsset,
+    required this.bodyPart,
+    required this.exerciseImageAssets,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(partName),
+        title: Text(bodyPart.name),
         backgroundColor: AppColors.secondPageContainerGradient1stColor,
       ),
       body: Column(
@@ -30,11 +27,11 @@ class PartsPage extends StatelessWidget {
             child: CarouselSlider(
               options: CarouselOptions(
                 autoPlay: true,
-                autoPlayAnimationDuration: const Duration(seconds: 2),
+                autoPlayAnimationDuration: const Duration(seconds: 1),
                 aspectRatio: 16 / 9,
                 enlargeCenterPage: true,
               ),
-              items: imagesAsset,
+              items: exerciseImageAssets,
             ),
           ),
           // Exercises
@@ -43,7 +40,7 @@ class PartsPage extends StatelessWidget {
               alignment: Alignment.bottomRight,
               children: [
                 ListView.builder(
-                  itemCount: exercises.length,
+                  itemCount: bodyPart.exercises!.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       leading: Icon(
@@ -51,13 +48,13 @@ class PartsPage extends StatelessWidget {
                         color: AppColors.firstGradientColor,
                       ),
                       title: Text(
-                        exercises[index],
+                        bodyPart.exercises![index].name,
                         style: TextStyle(
                           color: AppColors.secondPageContainerGradient1stColor,
                         ),
                       ), // List of Exercises, fazer ficar dinamico.
                       trailing: Text(
-                        "${setReps[index]} reps",
+                        "${bodyPart.exercises![index].reps} reps",
                         style: TextStyle(
                           color: AppColors.secondPageContainerGradient2ndColor,
                         ),
@@ -97,7 +94,7 @@ class PartsPage extends StatelessWidget {
           ),
         ],
       ),
-       floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: AppColors.secondPageContainerGradient1stColor,
         splashColor: AppColors.secondPageContainerGradient2ndColor,
